@@ -18,4 +18,43 @@ public class Jedi {
         this.strength = strength;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public String getSaberColor() {
+        return saberColor;
+    }
+
+    public void setSaberColor(String saberColor) {
+        this.saberColor = saberColor;
+    }
 }
