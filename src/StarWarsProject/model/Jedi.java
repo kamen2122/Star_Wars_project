@@ -1,6 +1,6 @@
-package StarWarsProject.Clas;
+package StarWarsProject.model;
 
-import StarWarsProject.Enums.Rank;
+import StarWarsProject.enums.Rank;
 
 public class Jedi {
     private String name;
@@ -56,5 +56,14 @@ public class Jedi {
 
     public void setSaberColor(String saberColor) {
         this.saberColor = saberColor;
+    }
+    @Override
+    public String toString()
+    {
+        return "Name: " + name
+                + ", Rank: " + rank
+                + ", Age: " + age
+                + ", Saber Color: " + saberColor
+                + ", Strength: " + strength;
     }
 }
