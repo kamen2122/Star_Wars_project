@@ -360,4 +360,22 @@ public class JediService {
 
         return mostUsed;
     }
+    /*
+ Премахва джедай
+ от дадена планета.
+*/
+    public boolean removeJedi
+    (
+            Planet planet,
+            String jediName
+    )
+    {
+
+        if(planet == null)
+        {
+            return false;
+        }
+
+        return planet.removeJedi(jediName);
+    }
 }

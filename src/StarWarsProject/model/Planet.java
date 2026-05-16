@@ -44,4 +44,21 @@ public class Planet {
 
         return null;
     }
+    /*
+ Премахва джедай по име.
+*/
+    public boolean removeJedi(String name)
+    {
+        for(Jedi jedi : jedis)
+        {
+            if(jedi.getName().equalsIgnoreCase(name))
+            {
+                jedis.remove(jedi);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
