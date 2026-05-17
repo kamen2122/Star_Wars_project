@@ -4,8 +4,7 @@ import StarWarsProject.model.Jedi;
 import StarWarsProject.model.Planet;
 import StarWarsProject.enums.Rank;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class JediService {
     /*
@@ -377,5 +376,41 @@ public class JediService {
         }
 
         return planet.removeJedi(jediName);
+    }
+    /*
+ Сортира по име.
+*/
+    public List<Jedi> sortByName(Planet planet)
+    {
+
+        if(planet == null)
+        {
+            return null;
+        }
+
+        List<Jedi> sorted = new ArrayList<>(planet.getJedis());
+
+
+        Collections.sort(sorted, Comparator.comparing(Jedi::getName));
+
+        return sorted;
+    }
+    /*
+ Сортира по сила.
+*/
+    public List<Jedi> sortByStrength(Planet planet)
+    {
+
+        if(planet == null)
+        {
+            return null;
+        }
+
+        List<Jedi> sorted = new ArrayList<>(planet.getJedis());
+
+
+        Collections.sort(sorted, (j1, j2) -> Integer.compare(j2.getStrength(), j1.getStrength()));
+
+        return sorted;
     }
 }
