@@ -7,53 +7,50 @@ public class Planet {
     private String planetName;
 
 
-
     private List<Jedi> jedis = new ArrayList<>();
 
-    public Planet(String planetName)
-    {
+    public Planet(String planetName) {
         this.planetName = planetName;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return planetName;
     }
 
-    public void addJedi(Jedi jedi)
-    {
+    public void addJedi(Jedi jedi) {
         jedis.add(jedi);
     }
 
-    public List<Jedi> getJedis()
-    {
+    public List<Jedi> getJedis() {
         return jedis;
     }
+
     /*
  Търси джедай по име.
 */
-    public Jedi getJediByName(String name)
-    {
-        for(Jedi jedi : jedis)
-        {
-            if(jedi.getName().equalsIgnoreCase(name))
-            {
+    public Jedi getJediByName(String name) {
+        for (Jedi jedi : jedis) {
+            if (jedi.getName().equalsIgnoreCase(name)) {
                 return jedi;
             }
         }
 
         return null;
     }
+
     /*
  Премахва джедай по име.
 */
-    public boolean removeJedi(String name)
-    {
-        for(Jedi jedi : jedis)
-        {
-            if(jedi.getName().equalsIgnoreCase(name))
-            {
-                jedis.remove(jedi);
+    public boolean removeJedi(String name) {
+        Iterator<Jedi> iterator =
+                jedis.iterator();
+
+        while (iterator.hasNext()) {
+            Jedi jedi = iterator.next();
+
+            if (jedi.getName()
+                    .equalsIgnoreCase(name)) {
+                iterator.remove();
 
                 return true;
             }

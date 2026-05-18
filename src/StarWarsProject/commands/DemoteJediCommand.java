@@ -25,7 +25,7 @@ public class DemoteJediCommand  implements Command
 
         if(args.length < 3)
         {
-            System.out.println("Invalid command.");
+            System.out.println("Usage: demote_jedi <planet> <jedi> <multiplier>");
 
             return;
         }
@@ -34,11 +34,27 @@ public class DemoteJediCommand  implements Command
         String planetName = args[0];
 
         String jediName = args[1];
+        double multiplier;
 
-        double multiplier = Double.parseDouble(args[2]);
+        try
+        {
+            multiplier = Double.parseDouble(args[2]);
+        }
+        catch(NumberFormatException e)
+        {
+            System.out.println("Invalid multiplier.");
+
+            return;
+        }
 
 
         Planet planet = galaxy.getPlanetByName(planetName);
+        if(planet == null)
+        {
+            System.out.println("Planet not found.");
+
+            return;
+        }
 
 
         boolean demoted = jediService.demoteJedi(planet, jediName, multiplier);

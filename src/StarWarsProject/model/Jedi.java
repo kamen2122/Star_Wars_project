@@ -9,8 +9,7 @@ public class Jedi {
     private String saberColor;
     private int strength;
 
-    public Jedi(String name,Rank rank,int age,String saberColor,int strength)
-    {
+    public Jedi(String name, Rank rank, int age, String saberColor, int strength) {
         this.name = name;
         this.rank = rank;
         this.age = age;
@@ -57,9 +56,9 @@ public class Jedi {
     public void setSaberColor(String saberColor) {
         this.saberColor = saberColor;
     }
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Name: " + name
                 + ", Rank: " + rank
                 + ", Age: " + age

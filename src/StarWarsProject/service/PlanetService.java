@@ -10,6 +10,10 @@ public class PlanetService {
    */
     public boolean addPlanet(Galaxy galaxy, String planetName)
     {
+        if(planetName == null || planetName.trim().isEmpty())
+        {
+            return false;
+        }
 
         // Проверка дали планетата вече съществува
         if(galaxy.planetExists(planetName))

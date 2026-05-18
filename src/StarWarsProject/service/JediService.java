@@ -9,8 +9,8 @@ import java.util.*;
 public class JediService {
     /*
     Добавя нов джедай към планета.
-   */
-    public boolean addJedi(Planet planet, String name, String rankStr, int age, String color, double strength) {
+    */
+    public boolean addJedi(Planet planet, String name, String rankStr, int age, String color, int strength) {
 
         // Проверка за null планета
         if (planet == null) {
@@ -56,8 +56,8 @@ public class JediService {
     }
 
     /*
- Повишава ранга на джедай.
-*/
+    Повишава ранга на джедай.
+    */
     public boolean promoteJedi(Planet planet, String jediName, double multiplier) {
 
         // Проверка за null
@@ -126,8 +126,8 @@ public class JediService {
     }
 
     /*
- Намалява ранга на джедай.
-*/
+    Намалява ранга на джедай.
+    */
     public boolean demoteJedi(Planet planet, String jediName, double multiplier) {
 
         if (planet == null) {
@@ -182,9 +182,9 @@ public class JediService {
     }
 
     /*
- Връща най-силния джедай
- на дадена планета.
-*/
+    Връща най-силния джедай
+    на дадена планета.
+    */
     public Jedi getStrongestJedi(Planet planet) {
 
         // Проверка за null
@@ -218,36 +218,11 @@ public class JediService {
         return strongest;
     }
 
-    /*
- Връща най-младия джедай.
-*/
-    public Jedi getYoungestJedi(Planet planet) {
-
-        if (planet == null) {
-            return null;
-        }
-
-        if (planet.getJedis().isEmpty()) {
-            return null;
-        }
-
-
-        Jedi youngest = planet.getJedis().get(0);
-
-
-        for (Jedi jedi : planet.getJedis()) {
-            if (jedi.getAge() < youngest.getAge()) {
-                youngest = jedi;
-            }
-        }
-
-        return youngest;
-    }
 
     /*
- Връща най-използвания
- цвят на светлинен меч.
-*/
+    Връща най-използвания
+    цвят на светлинен меч.
+    */
     public String getMostUsedSaberColor(Planet planet) {
 
         if (planet == null) {
@@ -306,9 +281,9 @@ public class JediService {
     }
 
     /*
- Премахва джедай
- от дадена планета.
-*/
+    Премахва джедай
+    от дадена планета.
+    */
     public boolean removeJedi(Planet planet, String jediName) {
 
         if (planet == null) {
@@ -318,39 +293,7 @@ public class JediService {
         return planet.removeJedi(jediName);
     }
 
-    /*
- Сортира по име.
-    */
-    public List<Jedi> sortByName(Planet planet) {
 
-        if (planet == null) {
-            return null;
-        }
-
-        List<Jedi> sorted = new ArrayList<>(planet.getJedis());
-
-
-        Collections.sort(sorted, Comparator.comparing(Jedi::getName));
-
-        return sorted;
-    }
-
-    /*
- Сортира по сила.
-*/
-    public List<Jedi> sortByStrength(Planet planet) {
-
-        if (planet == null) {
-            return null;
-        }
-
-        List<Jedi> sorted = new ArrayList<>(planet.getJedis());
-
-
-        Collections.sort(sorted, (j1, j2) -> Integer.compare(j2.getStrength(), j1.getStrength()));
-
-        return sorted;
-    }
     /*
     Сортира
     1.По ранг
@@ -364,6 +307,24 @@ public class JediService {
         List<Jedi> sorted = new ArrayList<>(planet.getJedis());
 
         Collections.sort(sorted, Comparator.comparing(Jedi::getRank).thenComparing(Jedi::getName));
-     return sorted;
+        return sorted;
+    }
+
+    public Jedi getYoungestJediByRank(Planet planet, Rank rank) {
+        if (planet == null) {
+            return null;
+        }
+
+        Jedi youngest = null;
+
+        for (Jedi jedi : planet.getJedis()) {
+            if (jedi.getRank() == rank) {
+                if (youngest == null || jedi.getAge() < youngest.getAge()) {
+                    youngest = jedi;
+                }
+            }
+        }
+
+        return youngest;
     }
 }

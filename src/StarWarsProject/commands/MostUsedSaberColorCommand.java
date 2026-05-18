@@ -1,11 +1,10 @@
 package StarWarsProject.commands;
 
 import StarWarsProject.model.Galaxy;
-import StarWarsProject.model.Jedi;
 import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
 
-public class SortByStrengthCommand implements Command
+public class MostUsedSaberColorCommand implements Command
 {
 
     private JediService jediService;
@@ -13,11 +12,7 @@ public class SortByStrengthCommand implements Command
     private Galaxy galaxy;
 
 
-    public SortByStrengthCommand
-            (
-                    JediService jediService,
-                    Galaxy galaxy
-            )
+    public MostUsedSaberColorCommand(JediService jediService, Galaxy galaxy)
     {
         this.jediService = jediService;
         this.galaxy = galaxy;
@@ -28,9 +23,14 @@ public class SortByStrengthCommand implements Command
     public void execute(String[] args)
     {
 
+        /*
+         get_most_used_saber_color
+         <planet>
+        */
+
         if(args.length < 1)
         {
-            System.out.println("Invalid command.");
+            System.out.println("Usage: get_most_used_saber_color <planet>");
 
             return;
         }
@@ -50,9 +50,17 @@ public class SortByStrengthCommand implements Command
         }
 
 
-        for(Jedi jedi : jediService.sortByStrength(planet))
+        String color = jediService.getMostUsedSaberColor(planet);
+
+
+        if(color == null)
         {
-            System.out.println(jedi);
+            System.out.println("No Jedi found.");
+
+            return;
         }
+
+
+        System.out.println("Most used saber color: " + color);
     }
 }

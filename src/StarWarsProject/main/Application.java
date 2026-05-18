@@ -15,7 +15,7 @@ public class Application {
 
         Scanner scanner = new Scanner(System.in);
         boolean fileOpened = false;
-        String currentFile = null;
+        ApplicationState state = new ApplicationState();
         String currentPath = System.getProperty("user.dir");
 
     /*
@@ -39,21 +39,20 @@ public class Application {
      Регистрираме командите.
     */
         commands.put("add_planet", new AddPlanetCommand(planetService, galaxy));
-
-
         commands.put("create_jedi", new CreateJediCommand(jediService, galaxy));
         commands.put("promote_jedi", new PromoteJediCommand(jediService, galaxy));
         commands.put("demote_jedi", new DemoteJediCommand(jediService, galaxy));
         commands.put("print", new PrintCommand(galaxy, jediService));
-        commands.put("remove_jedi", new RemoveJediCommand(jediService, galaxy));
-        commands.put("sort_strength", new SortByStrengthCommand(jediService, galaxy));
-        commands.put("strongest_jedi", new StrongestJediCommand(jediService, galaxy));
-        commands.put("save", new SaveCommand(fileService, galaxy));
+        commands.put("removeJedi", new RemoveJediCommand(jediService, galaxy));
+        commands.put("get_strongest_jedi", new StrongestJediCommand(jediService, galaxy));
+        commands.put("save", new SaveCommand(fileService, galaxy,state));
         commands.put("open", new LoadCommand(fileService, galaxy));
         commands.put("help", new HelpCommand());
         commands.put("close", new CloseCommand(galaxy));
         commands.put("save_as", new SaveAsCommand(fileService, galaxy));
-
+        commands.put("get_youngest_jedi", new YoungestJediCommand(jediService, galaxy));
+        commands.put("get_most_used_saber_color", new MostUsedSaberColorCommand(jediService, galaxy));
+        commands.put("merge_planets", new MergePlanetsCommand(galaxy));
     /*
      Главен loop.
     */
@@ -93,6 +92,17 @@ public class Application {
                     commandName = "save_as";
                 }
             }
+            /*
+            Проверка за:
+            planet + planet
+            */
+            if(tokens.length == 3)
+            {
+                if(tokens[1].equals("+"))
+                {
+                    commandName = "merge_planets";
+                }
+            }
 
         /*
          Останалите са arguments.
@@ -119,6 +129,7 @@ public class Application {
                     commandArgs[i - 1] = tokens[i];
                 }
             }
+
 
 
         /*
@@ -151,13 +162,13 @@ public class Application {
                 if (commandArgs.length > 0) {
                     fileOpened = true;
 
-                    currentFile = commandArgs[0];
+                    state.setCurrentFile(commandArgs[0]);
                 }
             }
             if (commandName.equals("close")) {
                 fileOpened = false;
 
-                currentFile = null;
+                state.setCurrentFile(null);
             }
         }
     }

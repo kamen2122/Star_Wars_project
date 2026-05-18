@@ -13,11 +13,7 @@ public class StrongestJediCommand implements Command
     private Galaxy galaxy;
 
 
-    public StrongestJediCommand
-            (
-                    JediService jediService,
-                    Galaxy galaxy
-            )
+    public StrongestJediCommand(JediService jediService, Galaxy galaxy)
     {
         this.jediService = jediService;
         this.galaxy = galaxy;
@@ -30,7 +26,7 @@ public class StrongestJediCommand implements Command
 
         if(args.length < 1)
         {
-            System.out.println("Invalid command.");
+            System.out.println("Usage: get_strongest_jedi <planet>");
 
             return;
         }
@@ -41,7 +37,12 @@ public class StrongestJediCommand implements Command
 
         Planet planet = galaxy.getPlanetByName(planetName);
 
+        if(planet == null)
+        {
+            System.out.println("Planet not found.");
 
+            return;
+        }
         Jedi strongest = jediService.getStrongestJedi(planet);
 
 

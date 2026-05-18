@@ -29,7 +29,7 @@ public class SaveAsCommand
         */
         if(args.length < 1)
         {
-            System.out.println("Usage: save_as <file>");
+            System.out.println("Usage: save as <file>");
 
             return;
         }

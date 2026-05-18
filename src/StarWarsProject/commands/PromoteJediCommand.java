@@ -12,11 +12,7 @@ public class PromoteJediCommand  implements Command
     private Galaxy galaxy;
 
 
-    public PromoteJediCommand
-            (
-                    JediService jediService,
-                    Galaxy galaxy
-            )
+    public PromoteJediCommand(JediService jediService, Galaxy galaxy)
     {
         this.jediService = jediService;
         this.galaxy = galaxy;
@@ -36,7 +32,7 @@ public class PromoteJediCommand  implements Command
 
         if(args.length < 3)
         {
-            System.out.println("Invalid command.");
+            System.out.println("Usage: promote_jedi <planet> <jedi> <multiplier>");
 
             return;
         }
@@ -46,11 +42,26 @@ public class PromoteJediCommand  implements Command
 
         String jediName = args[1];
 
-        double multiplier = Double.parseDouble(args[2]);
+        double multiplier;
 
+        try
+        {
+            multiplier = Double.parseDouble(args[2]);
+        }
+        catch(NumberFormatException e)
+        {
+            System.out.println("Invalid multiplier.");
+
+            return;
+        }
 
         Planet planet = galaxy.getPlanetByName(planetName);
+        if(planet == null)
+        {
+            System.out.println("Planet not found.");
 
+            return;
+        }
 
         boolean promoted = jediService.promoteJedi(planet, jediName, multiplier);
 

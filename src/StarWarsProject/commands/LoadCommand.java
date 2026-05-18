@@ -24,7 +24,7 @@ public class LoadCommand implements Command
 
         if(args.length < 1)
         {
-            System.out.println("Invalid command.");
+            System.out.println("Usage: open <file>");
 
             return;
         }

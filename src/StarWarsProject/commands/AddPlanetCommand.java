@@ -31,7 +31,7 @@ public class AddPlanetCommand implements Command{
 
         if(args.length < 1)
         {
-            System.out.println("Invalid command.");
+            System.out.println("Usage: add_planet <planet>");
 
             return;
         }

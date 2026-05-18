@@ -1,14 +1,21 @@
 package StarWarsProject.commands;
 
 import StarWarsProject.file.FileService;
+import StarWarsProject.main.ApplicationState;
 import StarWarsProject.model.Galaxy;
 
 public class SaveCommand implements Command {
     private FileService fileService;
-
+    private ApplicationState state;
     private Galaxy galaxy;
 
 
+    public SaveCommand(FileService fileService, Galaxy galaxy, ApplicationState state)
+    {
+        this.fileService = fileService;
+        this.galaxy = galaxy;
+        this.state = state;
+    }
     public SaveCommand(FileService fileService, Galaxy galaxy)
     {
         this.fileService = fileService;
@@ -20,17 +27,18 @@ public class SaveCommand implements Command {
     public void execute(String[] args)
     {
 
-        if(args.length < 1)
+        String currentFile =
+                state.getCurrentFile();
+
+
+        if(currentFile == null)
         {
-            System.out.println("Invalid command.");
+            System.out.println("No file opened.");
 
             return;
         }
 
 
-        String fileName = args[0];
-
-
-        fileService.saveGalaxy(galaxy, fileName);
+        fileService.saveGalaxy(galaxy, currentFile);
     }
 }

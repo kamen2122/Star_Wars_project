@@ -56,7 +56,7 @@ public class FileService {
 
             System.out.println("Galaxy saved successfully.");
         }
-        catch(IOException e)
+        catch(Exception e)
         {
             System.out.println("Error while saving galaxy.");
         }
@@ -123,7 +123,10 @@ public class FileService {
                  Разделяме по запетая.
                 */
                     String[] tokens = data.split(",");
-
+                    if(tokens.length < 5)
+                    {
+                        continue;
+                    }
 
                     String name = tokens[0];
 
@@ -133,8 +136,8 @@ public class FileService {
 
                     String color = tokens[3];
 
-                    int strength =
-                            Integer.parseInt(tokens[4]);
+
+                    int strength = Integer.parseInt(tokens[4]);
 
 
                     Jedi jedi = new Jedi(name, rank, age, color, strength);
@@ -155,11 +158,9 @@ public class FileService {
 
             System.out.println("Galaxy loaded successfully.");
         }
-        catch (IOException e)
+        catch (Exception e)
         {
-            System.out.println(
-                    "Error loading galaxy."
-            );
+            System.out.println("Error loading galaxy.");
         }
 
         return galaxy;

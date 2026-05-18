@@ -36,7 +36,7 @@ public class RemoveJediCommand
 
         if(args.length < 2)
         {
-            System.out.println("Invalid command.");
+            System.out.println("Usage: removeJedi <planet> <jedi>");
 
             return;
         }
@@ -47,28 +47,25 @@ public class RemoveJediCommand
         String jediName = args[1];
 
 
-        Planet planet =
-                galaxy.getPlanetByName(planetName);
+        Planet planet = galaxy.getPlanetByName(planetName);
+        if(planet == null)
+        {
+            System.out.println("Planet not found.");
+
+            return;
+        }
 
 
-        boolean removed =
-                jediService.removeJedi(
-                        planet,
-                        jediName
-                );
+        boolean removed = jediService.removeJedi(planet, jediName);
 
 
         if(removed)
         {
-            System.out.println(
-                    "Jedi removed successfully."
-            );
+            System.out.println("Jedi removed successfully.");
         }
         else
         {
-            System.out.println(
-                    "Could not remove Jedi."
-            );
+            System.out.println("Could not remove Jedi.");
         }
     }
 }
