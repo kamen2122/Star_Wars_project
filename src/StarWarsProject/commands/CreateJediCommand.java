@@ -3,7 +3,9 @@ package StarWarsProject.commands;
 import StarWarsProject.model.Galaxy;
 import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
-
+/**
+ * Команда за <създаване на джедай>.
+ */
 public class CreateJediCommand
         implements Command
 {
@@ -20,21 +22,16 @@ public class CreateJediCommand
     }
 
 
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {
 
-        /*
-         Очакваме:
 
-         create_jedi
-         planetName
-         jediName
-         rank
-         age
-         color
-         strength
-        */
 
         if(args.length < 6)
         {
@@ -70,8 +67,8 @@ public class CreateJediCommand
         }
 
 
-        /*
-         Търсим планетата.
+        /**
+         * Търсим планетата.
         */
         Planet planet = galaxy.getPlanetByName(planetName);
         if(planet == null)

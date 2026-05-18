@@ -1,9 +1,16 @@
 package StarWarsProject.commands;
 
-public class HelpCommand
-        implements Command
+/**
+ * Команда за <информация на команди>.
+ */
+public class HelpCommand implements Command
 {
 
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {

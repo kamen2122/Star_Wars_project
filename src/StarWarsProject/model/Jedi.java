@@ -2,6 +2,9 @@ package StarWarsProject.model;
 
 import StarWarsProject.enums.Rank;
 
+/**
+ * Представя джедай в галактиката
+ */
 public class Jedi {
     private String name;
     private Rank rank;
@@ -9,6 +12,14 @@ public class Jedi {
     private String saberColor;
     private int strength;
 
+    /**
+     * Създава нов джедай
+     * @param name име на джедай
+     * @param rank ранг
+     * @param age  възраст
+     * @param saberColor цвят на меча
+     * @param strength сила на джедая
+     */
     public Jedi(String name, Rank rank, int age, String saberColor, int strength) {
         this.name = name;
         this.rank = rank;

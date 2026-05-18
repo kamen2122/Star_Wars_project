@@ -3,7 +3,9 @@ package StarWarsProject.commands;
 import StarWarsProject.model.Galaxy;
 import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
-
+/**
+ * Команда за <намаляне на ранг>.
+ */
 public class DemoteJediCommand  implements Command
 {
 
@@ -19,6 +21,11 @@ public class DemoteJediCommand  implements Command
     }
 
 
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {

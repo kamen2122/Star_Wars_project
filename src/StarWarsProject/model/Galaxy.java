@@ -5,7 +5,9 @@ import java.util.List;
 
 public class Galaxy {
 
-    // Списък с всички планети в галактиката.
+    /**
+     * Списък с всички планети в галактиката.
+     */
 
     private List<Planet> planets = new ArrayList<>();
 
@@ -16,10 +18,11 @@ public class Galaxy {
     public List<Planet> getPlanets() {
         return planets;
     }
-    /*
-    Търси планета по име.
-    Ако я намери -> връща Planet
-    Ако не -> връща null*/
+    /**
+     * Търси планета по име.
+     * Ако я намери -> връща Planet
+     * Ако не -> връща null
+     */
 
     public Planet getPlanetByName(String name) {
         for (Planet planet : planets) {
@@ -31,15 +34,15 @@ public class Galaxy {
         return null;
     }
 
-    /*
-     Проверява дали съществува планета.
+    /**
+     * Проверява дали съществува планета.
     */
     public boolean planetExists(String name) {
         return getPlanetByName(name) != null;
     }
 
-    /*
-    Търси джеди във всички планети
+    /**
+     * Търси джеди във всички планети
      */
     public Jedi findJediByName(String name) {
         for (Planet planet : planets) {
@@ -52,8 +55,8 @@ public class Galaxy {
         return null;
     }
 
-    /*
-    Намира планетата, на която живее джедай
+    /**
+     * Намира планетата, на която живее джедай
      */
     public Planet findPlanetByJedi(String jediName) {
         for (Planet planet : planets) {

@@ -7,7 +7,9 @@ import StarWarsProject.model.Planet;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
+/**
+ * Команда за <извждане на екран в сортиран вид>.
+ */
 public class MergePlanetsCommand implements Command
 {
 
@@ -19,13 +21,17 @@ public class MergePlanetsCommand implements Command
         this.galaxy = galaxy;
     }
 
-
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {
 
-        /*
-         planet1 + planet2
+        /**
+         * planet1 + planet2
         */
 
         if(args.length < 2)
@@ -49,9 +55,8 @@ public class MergePlanetsCommand implements Command
         }
 
 
-        /*
-         Обединяваме
-         джедаите.
+        /**
+         * Обединяваме джедаите.
         */
         List<Jedi> jedis = new ArrayList<>();
 
@@ -61,15 +66,13 @@ public class MergePlanetsCommand implements Command
         jedis.addAll(secondPlanet.getJedis());
 
 
-        /*
-         Lexicographic sort.
+        /**
+         * Лексикографски начин на сортиране.
         */
         jedis.sort(Comparator.comparing(Jedi::getName));
 
 
-        /*
-         Print.
-        */
+
         for(Jedi jedi : jedis)
         {
             System.out.println(jedi);

@@ -3,6 +3,9 @@ package StarWarsProject.service;
 import StarWarsProject.model.Galaxy;
 import StarWarsProject.model.Planet;
 
+/**
+ * Клас за операции с планети
+ */
 public class PlanetService {
 
     /*

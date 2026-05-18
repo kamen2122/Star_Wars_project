@@ -1,5 +1,8 @@
 package StarWarsProject.main;
 
+/**
+ * Съхранява информация за текущо отворения файл.
+ */
 public class ApplicationState
 {
 

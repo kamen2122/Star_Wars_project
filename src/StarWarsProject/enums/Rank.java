@@ -1,5 +1,7 @@
 package StarWarsProject.enums;
-
+/**
+ * Представя ранговете на джедаите.
+ */
 public enum Rank {
 
     YOUNGLING,

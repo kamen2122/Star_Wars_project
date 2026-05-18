@@ -1,9 +1,10 @@
 package StarWarsProject.commands;
 
 import StarWarsProject.model.Galaxy;
-
-public class CloseCommand
-        implements Command
+/**
+ * Команда за <затваряне на файл>.
+ */
+public class CloseCommand implements Command
 {
 
     private Galaxy galaxy;
@@ -14,7 +15,11 @@ public class CloseCommand
         this.galaxy = galaxy;
     }
 
-
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {

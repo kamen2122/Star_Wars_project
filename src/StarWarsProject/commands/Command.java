@@ -1,12 +1,14 @@
 package StarWarsProject.commands;
-
+/**
+ * Основен интерфейс за всички команди.
+ */
 public interface Command {
 
-    /*
-     Всички команди
-     трябва да могат
-     да се изпълняват.
-    */
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     void execute(String[] args);
 
 }

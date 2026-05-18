@@ -6,10 +6,20 @@ import StarWarsProject.enums.Rank;
 
 import java.util.*;
 
+/**
+ * Клас за операции с джедай
+ */
 public class JediService {
-    /*
-    Добавя нов джедай към планета.
-    */
+    /**
+     * Добавя нов джедай към планета
+     * @param planet
+     * @param name
+     * @param rankStr
+     * @param age
+     * @param color
+     * @param strength
+     * @return
+     */
     public boolean addJedi(Planet planet, String name, String rankStr, int age, String color, int strength) {
 
         // Проверка за null планета

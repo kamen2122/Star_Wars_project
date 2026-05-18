@@ -3,6 +3,10 @@ package StarWarsProject.commands;
 import StarWarsProject.file.FileService;
 import StarWarsProject.model.Galaxy;
 
+
+/**
+ * Команда за <зареждане на файл>.
+ */
 public class LoadCommand implements Command
 {
 
@@ -18,6 +22,11 @@ public class LoadCommand implements Command
     }
 
 
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {
@@ -32,20 +41,20 @@ public class LoadCommand implements Command
         String fileName = args[0];
 
 
-        /*
-         Зареждаме новата галактика.
+        /**
+         * Зареждаме новата галактика.
         */
         Galaxy loadedGalaxy = fileService.loadGalaxy(fileName);
 
 
-        /*
-         Изчистваме старата.
+        /**
+         * Изчистваме старата.
         */
         galaxy.getPlanets().clear();
 
 
-        /*
-         Добавяме новите планети.
+        /**
+         * Добавяме новите планети.
         */
         galaxy.getPlanets().addAll(loadedGalaxy.getPlanets());
     }

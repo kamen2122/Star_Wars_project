@@ -2,6 +2,9 @@ package StarWarsProject.model;
 
 import java.util.*;
 
+/**
+ * Представя планета, съдържаща джедай.
+ */
 public class Planet {
 
     private String planetName;
@@ -25,9 +28,9 @@ public class Planet {
         return jedis;
     }
 
-    /*
- Търси джедай по име.
-*/
+    /**
+     * Търси джедай по име.
+    */
     public Jedi getJediByName(String name) {
         for (Jedi jedi : jedis) {
             if (jedi.getName().equalsIgnoreCase(name)) {
@@ -38,9 +41,9 @@ public class Planet {
         return null;
     }
 
-    /*
- Премахва джедай по име.
-*/
+    /**
+     * Премахва джедай по име.
+    */
     public boolean removeJedi(String name) {
         Iterator<Jedi> iterator =
                 jedis.iterator();

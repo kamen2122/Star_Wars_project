@@ -7,9 +7,15 @@ import StarWarsProject.model.Planet;
 
 import java.io.*;
 
+/**
+ * Отговаря за записването и зареждането на данни
+ */
 public class FileService {
-    /*
-    Записва галактиката във файла
+    /**
+     * Записва галактиката във файл.
+     *
+     * @param galaxy галактика за запис
+     * @param fileName име на файла
      */
     public void saveGalaxy(Galaxy galaxy, String fileName)
     {
@@ -61,9 +67,12 @@ public class FileService {
             System.out.println("Error while saving galaxy.");
         }
     }
-    /*
- Зарежда галактика от файл.
-    */
+    /**
+     * Зарежда галактика от файл.
+     *
+     * @param fileName име на файла
+     * @return заредената галактика
+     */
     public Galaxy loadGalaxy(String fileName)
     {
 
