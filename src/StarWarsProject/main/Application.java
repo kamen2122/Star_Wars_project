@@ -119,10 +119,17 @@ public class Application {
                     commandArgs[i - 2] = tokens[i];
                 }
             }
+            else if(commandName.equals("merge_planets"))
+            {
+                commandArgs = new String[2];
+
+                commandArgs[0] = tokens[0];
+
+                commandArgs[1] = tokens[2];
+            }
             else
             {
-                commandArgs =
-                        new String[tokens.length - 1];
+                commandArgs = new String[tokens.length - 1];
 
                 for(int i = 1; i < tokens.length; i++)
                 {
