@@ -15,6 +15,8 @@ public class Application {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        boolean fileOpened = false;
+        String currentFile =null;
 
 
     /*
@@ -43,17 +45,26 @@ public class Application {
         commands.put("create_jedi", new CreateJediCommand(jediService, galaxy));
         commands.put("promote_jedi", new PromoteJediCommand(jediService, galaxy));
         commands.put("demote_jedi", new DemoteJediCommand(jediService, galaxy));
-        commands.put("print_jedis", new PrintJedisCommand(jediService, galaxy));
+        commands.put("print", new PrintCommand(galaxy, jediService));
         commands.put("remove_jedi", new RemoveJediCommand(jediService, galaxy));
         commands.put("sort_strength", new SortByStrengthCommand(jediService, galaxy));
         commands.put("strongest_jedi", new StrongestJediCommand(jediService, galaxy));
         commands.put("save", new SaveCommand(fileService, galaxy));
+        commands.put("open", new LoadCommand(fileService, galaxy));
+        commands.put("help", new HelpCommand());
+        commands.put("close", new CloseCommand(galaxy));
+
     /*
      Главен loop.
     */
         while (true) {
+            System.out.print("StarWars> ");
 
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
+            if(input.isEmpty())
+            {
+                continue;
+            }
 
 
         /*
@@ -98,12 +109,36 @@ public class Application {
 
                 continue;
             }
+            if (!fileOpened && !commandName.equals("open") && !commandName.equals("help")&& !commandName.equals("exit")) {
+                System.out.println("No file opened");
+                continue;
+            }
 
 
         /*
          Изпълняваме командата.
         */
             command.execute(commandArgs);
+            /*
+            Ако е open команда,
+            вече имаме отворен файл.
+            */
+            if(commandName.equals("open"))
+            {
+
+                if(commandArgs.length > 0)
+                {
+                    fileOpened = true;
+
+                    currentFile = commandArgs[0];
+                }
+            }
+            if(commandName.equals("close"))
+            {
+                fileOpened = false;
+
+                currentFile = null;
+            }
         }
     }
 }

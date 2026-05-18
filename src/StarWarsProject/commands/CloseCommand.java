@@ -1,0 +1,30 @@
+package StarWarsProject.commands;
+
+import StarWarsProject.model.Galaxy;
+
+public class CloseCommand
+        implements Command
+{
+
+    private Galaxy galaxy;
+
+
+    public CloseCommand(Galaxy galaxy)
+    {
+        this.galaxy = galaxy;
+    }
+
+
+    @Override
+    public void execute(String[] args)
+    {
+
+        /*
+         Изчистваме
+         всички планети.
+        */
+        galaxy.getPlanets().clear();
+
+        System.out.println("Successfully closed file.");
+    }
+}

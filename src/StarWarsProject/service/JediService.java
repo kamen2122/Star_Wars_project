@@ -10,12 +10,10 @@ public class JediService {
     /*
     Добавя нов джедай към планета.
    */
-    public boolean addJedi(Planet planet, String name, String rankStr, int age, String color, double strength)
-    {
+    public boolean addJedi(Planet planet, String name, String rankStr, int age, String color, double strength) {
 
         // Проверка за null планета
-        if(planet == null)
-        {
+        if (planet == null) {
             return false;
         }
 
@@ -24,10 +22,8 @@ public class JediService {
          Проверка дали вече има джедай
          със същото име.
         */
-        for(Jedi jedi : planet.getJedis())
-        {
-            if(jedi.getName().equalsIgnoreCase(name))
-            {
+        for (Jedi jedi : planet.getJedis()) {
+            if (jedi.getName().equalsIgnoreCase(name)) {
                 return false;
             }
         }
@@ -38,12 +34,9 @@ public class JediService {
         */
         Rank rank;
 
-        try
-        {
+        try {
             rank = Rank.valueOf(rankStr.toUpperCase());
-        }
-        catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             return false;
         }
 
@@ -51,8 +44,7 @@ public class JediService {
         /*
          Създаваме новия джедай.
         */
-        Jedi jedi =
-                new Jedi(name, rank, age, color, (int)strength);
+        Jedi jedi = new Jedi(name, rank, age, color, (int) strength);
 
 
         /*
@@ -62,27 +54,20 @@ public class JediService {
 
         return true;
     }
+
     /*
  Повишава ранга на джедай.
 */
-    public boolean promoteJedi
-    (
-            Planet planet,
-            String jediName,
-            double multiplier
-    )
-    {
+    public boolean promoteJedi(Planet planet, String jediName, double multiplier) {
 
         // Проверка за null
-        if(planet == null)
-        {
+        if (planet == null) {
             return false;
         }
 
 
         // Multiplier трябва да е положителен
-        if(multiplier <= 0)
-        {
+        if (multiplier <= 0) {
             return false;
         }
 
@@ -90,8 +75,7 @@ public class JediService {
         // Търсим джедая
         Jedi jedi = planet.getJediByName(jediName);
 
-        if(jedi == null)
-        {
+        if (jedi == null) {
             return false;
         }
 
@@ -106,8 +90,7 @@ public class JediService {
      Ако вече е GRAND_MASTER
      няма накъде да се повишава.
     */
-        if(currentRank == Rank.GRAND_MASTER)
-        {
+        if (currentRank == Rank.GRAND_MASTER) {
             return false;
         }
 
@@ -123,8 +106,7 @@ public class JediService {
      Следващият rank е:
      текущата позиция + 1
     */
-        Rank nextRank =
-                ranks[currentRank.ordinal() + 1];
+        Rank nextRank = ranks[currentRank.ordinal() + 1];
 
 
     /*
@@ -136,40 +118,30 @@ public class JediService {
     /*
      Увеличаваме силата.
     */
-        int newStrength =
-                (int)(jedi.getStrength()
-                        + multiplier * jedi.getStrength());
+        int newStrength = (int) (jedi.getStrength() + multiplier * jedi.getStrength());
 
         jedi.setStrength(newStrength);
 
         return true;
     }
+
     /*
  Намалява ранга на джедай.
 */
-    public boolean demoteJedi
-    (
-            Planet planet,
-            String jediName,
-            double multiplier
-    )
-    {
+    public boolean demoteJedi(Planet planet, String jediName, double multiplier) {
 
-        if(planet == null)
-        {
+        if (planet == null) {
             return false;
         }
 
-        if(multiplier <= 0)
-        {
+        if (multiplier <= 0) {
             return false;
         }
 
 
         Jedi jedi = planet.getJediByName(jediName);
 
-        if(jedi == null)
-        {
+        if (jedi == null) {
             return false;
         }
 
@@ -181,8 +153,7 @@ public class JediService {
      Ако е най-ниският rank
      не може да пада надолу.
     */
-        if(currentRank == Rank.YOUNGLING)
-        {
+        if (currentRank == Rank.YOUNGLING) {
             return false;
         }
 
@@ -194,8 +165,7 @@ public class JediService {
      Предишният rank:
      ordinal - 1
     */
-        Rank previousRank =
-                ranks[currentRank.ordinal() - 1];
+        Rank previousRank = ranks[currentRank.ordinal() - 1];
 
 
         jedi.setRank(previousRank);
@@ -204,30 +174,26 @@ public class JediService {
     /*
      Намаляване на силата.
     */
-        int newStrength =
-                (int)(jedi.getStrength()
-                        - multiplier * jedi.getStrength());
+        int newStrength = (int) (jedi.getStrength() - multiplier * jedi.getStrength());
 
         jedi.setStrength(newStrength);
 
         return true;
     }
+
     /*
  Връща най-силния джедай
  на дадена планета.
 */
-    public Jedi getStrongestJedi(Planet planet)
-    {
+    public Jedi getStrongestJedi(Planet planet) {
 
         // Проверка за null
-        if(planet == null)
-        {
+        if (planet == null) {
             return null;
         }
 
         // Проверка за празен списък
-        if(planet.getJedis().isEmpty())
-        {
+        if (planet.getJedis().isEmpty()) {
             return null;
         }
 
@@ -236,71 +202,59 @@ public class JediService {
      В началото приемаме,
      че първият е най-силен.
     */
-        Jedi strongest =
-                planet.getJedis().get(0);
+        Jedi strongest = planet.getJedis().get(0);
 
 
     /*
      Минаваме през всички
      и сравняваме strength.
     */
-        for(Jedi jedi : planet.getJedis())
-        {
-            if(jedi.getStrength()
-                    > strongest.getStrength())
-            {
+        for (Jedi jedi : planet.getJedis()) {
+            if (jedi.getStrength() > strongest.getStrength()) {
                 strongest = jedi;
             }
         }
 
         return strongest;
     }
+
     /*
  Връща най-младия джедай.
 */
-    public Jedi getYoungestJedi(Planet planet)
-    {
+    public Jedi getYoungestJedi(Planet planet) {
 
-        if(planet == null)
-        {
+        if (planet == null) {
             return null;
         }
 
-        if(planet.getJedis().isEmpty())
-        {
+        if (planet.getJedis().isEmpty()) {
             return null;
         }
 
 
-        Jedi youngest =
-                planet.getJedis().get(0);
+        Jedi youngest = planet.getJedis().get(0);
 
 
-        for(Jedi jedi : planet.getJedis())
-        {
-            if(jedi.getAge()
-                    < youngest.getAge())
-            {
+        for (Jedi jedi : planet.getJedis()) {
+            if (jedi.getAge() < youngest.getAge()) {
                 youngest = jedi;
             }
         }
 
         return youngest;
     }
+
     /*
  Връща най-използвания
  цвят на светлинен меч.
 */
-    public String getMostUsedSaberColor(Planet planet)
-    {
+    public String getMostUsedSaberColor(Planet planet) {
 
-        if(planet == null)
-        {
+        if (planet == null) {
             return null;
         }
 
-        if(planet.getJedis().isEmpty())
-        {
+        if (planet.getJedis().isEmpty()) {
             return null;
         }
 
@@ -316,21 +270,15 @@ public class JediService {
      Броим колко пъти
      се среща всеки цвят.
     */
-        for(Jedi jedi : planet.getJedis())
-        {
+        for (Jedi jedi : planet.getJedis()) {
 
             String color =
                     jedi.getSaberColor();
 
-            if(colors.containsKey(color))
-            {
-                colors.put(
-                        color,
-                        colors.get(color) + 1
+            if (colors.containsKey(color)) {
+                colors.put(color, colors.get(color) + 1
                 );
-            }
-            else
-            {
+            } else {
                 colors.put(color, 1);
             }
         }
@@ -345,12 +293,9 @@ public class JediService {
         int maxCount = 0;
 
 
-        for(Map.Entry<String, Integer> entry
-                : colors.entrySet())
-        {
+        for (Map.Entry<String, Integer> entry : colors.entrySet()) {
 
-            if(entry.getValue() > maxCount)
-            {
+            if (entry.getValue() > maxCount) {
                 maxCount = entry.getValue();
 
                 mostUsed = entry.getKey();
@@ -359,32 +304,26 @@ public class JediService {
 
         return mostUsed;
     }
+
     /*
  Премахва джедай
  от дадена планета.
 */
-    public boolean removeJedi
-    (
-            Planet planet,
-            String jediName
-    )
-    {
+    public boolean removeJedi(Planet planet, String jediName) {
 
-        if(planet == null)
-        {
+        if (planet == null) {
             return false;
         }
 
         return planet.removeJedi(jediName);
     }
+
     /*
  Сортира по име.
-*/
-    public List<Jedi> sortByName(Planet planet)
-    {
+    */
+    public List<Jedi> sortByName(Planet planet) {
 
-        if(planet == null)
-        {
+        if (planet == null) {
             return null;
         }
 
@@ -395,14 +334,13 @@ public class JediService {
 
         return sorted;
     }
+
     /*
  Сортира по сила.
 */
-    public List<Jedi> sortByStrength(Planet planet)
-    {
+    public List<Jedi> sortByStrength(Planet planet) {
 
-        if(planet == null)
-        {
+        if (planet == null) {
             return null;
         }
 
@@ -412,5 +350,20 @@ public class JediService {
         Collections.sort(sorted, (j1, j2) -> Integer.compare(j2.getStrength(), j1.getStrength()));
 
         return sorted;
+    }
+    /*
+    Сортира
+    1.По ранг
+    2. По име
+     */
+    public List<Jedi> getSortedJedis(Planet planet) {
+        if (planet == null) {
+            return null;
+        }
+
+        List<Jedi> sorted = new ArrayList<>(planet.getJedis());
+
+        Collections.sort(sorted, Comparator.comparing(Jedi::getRank).thenComparing(Jedi::getName));
+     return sorted;
     }
 }

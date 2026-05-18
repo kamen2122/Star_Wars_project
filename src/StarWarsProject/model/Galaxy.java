@@ -41,4 +41,38 @@ public class Galaxy {
     {
         return getPlanetByName(name) != null;
     }
+    /*
+    Търси джеди във всички планети
+     */
+    public Jedi findJediByName(String name)
+    {
+        for (Planet planet : planets)
+        {
+            for (Jedi jedi : planet.getJedis())
+                {
+                if (jedi.getName().equalsIgnoreCase(name))
+                {
+                    return jedi;
+                }
+                }
+        }
+        return null;
+    }
+    /*
+    Намира планетата, на която живее джедай
+     */
+    public Planet findPlanetByJedi(String jediName)
+    {
+        for (Planet planet : planets)
+        {
+            for (Jedi jedi: planet.getJedis())
+            {
+                if (jedi.getName().equalsIgnoreCase(jediName))
+                {
+                    return planet;
+                }
+            }
+        }
+        return null;
+    }
 }
