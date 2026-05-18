@@ -3,9 +3,10 @@ package StarWarsProject.commands;
 
 import StarWarsProject.file.FileService;
 import StarWarsProject.model.Galaxy;
-
-public class SaveAsCommand
-        implements Command
+/**
+ * Команда за <записване на файл като>.
+ */
+public class SaveAsCommand implements Command
 {
 
     private FileService fileService;
@@ -18,15 +19,17 @@ public class SaveAsCommand
         this.fileService = fileService;
         this.galaxy = galaxy;
     }
-
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
 
     @Override
     public void execute(String[] args)
     {
 
-        /*
-         save_as <file>
-        */
+
         if(args.length < 1)
         {
             System.out.println("Usage: save as <file>");

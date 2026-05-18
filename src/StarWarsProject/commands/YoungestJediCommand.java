@@ -5,38 +5,33 @@ import StarWarsProject.model.Galaxy;
 import StarWarsProject.model.Jedi;
 import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
-
-public class YoungestJediCommand
-        implements Command {
+/**
+ * Команда за <най млад джедай>.
+ */
+public class YoungestJediCommand implements Command {
 
     private JediService jediService;
 
     private Galaxy galaxy;
 
 
-    public YoungestJediCommand
-            (
-                    JediService jediService,
-                    Galaxy galaxy
-            ) {
+    public YoungestJediCommand(JediService jediService, Galaxy galaxy) {
         this.jediService = jediService;
         this.galaxy = galaxy;
     }
 
-
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args) {
 
-        /*
-         get_youngest_jedi
-         <planet>
-         <rank>
-        */
+
 
         if (args.length < 2) {
-            System.out.println(
-                    "Usage: get_youngest_jedi <planet> <rank>"
-            );
+            System.out.println("Usage: get_youngest_jedi <planet> <rank>");
 
             return;
         }
@@ -47,14 +42,11 @@ public class YoungestJediCommand
         String rankString = args[1];
 
 
-        Planet planet =
-                galaxy.getPlanetByName(planetName);
+        Planet planet = galaxy.getPlanetByName(planetName);
 
 
         if (planet == null) {
-            System.out.println(
-                    "Planet not found."
-            );
+            System.out.println("Planet not found.");
 
             return;
         }
@@ -63,31 +55,19 @@ public class YoungestJediCommand
         Rank rank;
 
         try {
-            rank =
-                    Rank.valueOf(
-                            rankString.toUpperCase()
-                    );
+            rank =Rank.valueOf(rankString.toUpperCase());
         } catch (IllegalArgumentException e) {
-            System.out.println(
-                    "Invalid rank."
-            );
+            System.out.println("Invalid rank.");
 
             return;
         }
 
 
-        Jedi youngest =
-                jediService
-                        .getYoungestJediByRank(
-                                planet,
-                                rank
-                        );
+        Jedi youngest = jediService.getYoungestJediByRank(planet, rank);
 
 
         if (youngest == null) {
-            System.out.println(
-                    "No Jedi found."
-            );
+            System.out.println("No Jedi found.");
 
             return;
         }

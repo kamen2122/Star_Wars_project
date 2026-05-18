@@ -3,9 +3,10 @@ package StarWarsProject.commands;
 import StarWarsProject.model.Galaxy;
 import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
-
-public class RemoveJediCommand
-        implements Command
+/**
+ * Команда за <премахване на джедай>.
+ */
+public class RemoveJediCommand implements Command
 {
 
     private JediService jediService;
@@ -23,16 +24,16 @@ public class RemoveJediCommand
         this.galaxy = galaxy;
     }
 
-
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {
 
-        /*
-         remove_jedi
-         planetName
-         jediName
-        */
+
 
         if(args.length < 2)
         {

@@ -4,7 +4,9 @@ import StarWarsProject.model.Galaxy;
 import StarWarsProject.model.Jedi;
 import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
-
+/**
+ * Команда за <търсене на най силния джедай>.
+ */
 public class StrongestJediCommand implements Command
 {
 
@@ -18,7 +20,11 @@ public class StrongestJediCommand implements Command
         this.jediService = jediService;
         this.galaxy = galaxy;
     }
-
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
 
     @Override
     public void execute(String[] args)

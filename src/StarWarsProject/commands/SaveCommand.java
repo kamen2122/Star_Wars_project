@@ -3,7 +3,9 @@ package StarWarsProject.commands;
 import StarWarsProject.file.FileService;
 import StarWarsProject.main.ApplicationState;
 import StarWarsProject.model.Galaxy;
-
+/**
+ * Команда за <записване на файл>.
+ */
 public class SaveCommand implements Command {
     private FileService fileService;
     private ApplicationState state;
@@ -22,6 +24,11 @@ public class SaveCommand implements Command {
         this.galaxy = galaxy;
     }
 
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
 
     @Override
     public void execute(String[] args)

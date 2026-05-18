@@ -3,7 +3,9 @@ package StarWarsProject.commands;
 import StarWarsProject.model.Galaxy;
 import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
-
+/**
+ * Команда за <увеличаване на ранг>.
+ */
 public class PromoteJediCommand  implements Command
 {
 
@@ -18,17 +20,15 @@ public class PromoteJediCommand  implements Command
         this.galaxy = galaxy;
     }
 
-
+    /**
+     * Изпълнява логиката на командата.
+     *
+     * @param args аргументи на командата
+     */
     @Override
     public void execute(String[] args)
     {
 
-        /*
-         promote_jedi
-         planetName
-         jediName
-         multiplier
-        */
 
         if(args.length < 3)
         {
