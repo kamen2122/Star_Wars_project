@@ -63,7 +63,7 @@ public class FileService {
     }
     /*
  Зарежда галактика от файл.
-*/
+    */
     public Galaxy loadGalaxy(String fileName)
     {
 

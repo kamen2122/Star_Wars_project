@@ -3,7 +3,6 @@ package StarWarsProject.main;
 import StarWarsProject.commands.*;
 import StarWarsProject.file.FileService;
 import StarWarsProject.model.Galaxy;
-import StarWarsProject.model.Planet;
 import StarWarsProject.service.JediService;
 import StarWarsProject.service.PlanetService;
 
@@ -16,8 +15,8 @@ public class Application {
 
         Scanner scanner = new Scanner(System.in);
         boolean fileOpened = false;
-        String currentFile =null;
-
+        String currentFile = null;
+        String currentPath = System.getProperty("user.dir");
 
     /*
      Създаваме системата.
@@ -53,16 +52,16 @@ public class Application {
         commands.put("open", new LoadCommand(fileService, galaxy));
         commands.put("help", new HelpCommand());
         commands.put("close", new CloseCommand(galaxy));
+        commands.put("save_as", new SaveAsCommand(fileService, galaxy));
 
     /*
      Главен loop.
     */
         while (true) {
-            System.out.print("StarWars> ");
+            System.out.print(currentPath + "> ");
 
             String input = scanner.nextLine().trim();
-            if(input.isEmpty())
-            {
+            if (input.isEmpty()) {
                 continue;
             }
 
@@ -85,16 +84,40 @@ public class Application {
          Първата дума е command.
         */
             String commandName = tokens[0];
-
+            /*
+            Проверка за:
+            save as
+            */
+            if (tokens.length >= 2) {
+                if (tokens[0].equals("save") && tokens[1].equals("as")) {
+                    commandName = "save_as";
+                }
+            }
 
         /*
          Останалите са arguments.
         */
-            String[] commandArgs = new String[tokens.length - 1];
+            String[] commandArgs;
 
+            if(commandName.equals("save_as"))
+            {
+                commandArgs =
+                        new String[tokens.length - 2];
 
-            for (int i = 1; i < tokens.length; i++) {
-                commandArgs[i - 1] = tokens[i];
+                for(int i = 2; i < tokens.length; i++)
+                {
+                    commandArgs[i - 2] = tokens[i];
+                }
+            }
+            else
+            {
+                commandArgs =
+                        new String[tokens.length - 1];
+
+                for(int i = 1; i < tokens.length; i++)
+                {
+                    commandArgs[i - 1] = tokens[i];
+                }
             }
 
 
@@ -109,7 +132,7 @@ public class Application {
 
                 continue;
             }
-            if (!fileOpened && !commandName.equals("open") && !commandName.equals("help")&& !commandName.equals("exit")) {
+            if (!fileOpened && !commandName.equals("open") && !commandName.equals("close") && !commandName.equals("help") && !commandName.equals("exit")) {
                 System.out.println("No file opened");
                 continue;
             }
@@ -123,18 +146,15 @@ public class Application {
             Ако е open команда,
             вече имаме отворен файл.
             */
-            if(commandName.equals("open"))
-            {
+            if (commandName.equals("open")) {
 
-                if(commandArgs.length > 0)
-                {
+                if (commandArgs.length > 0) {
                     fileOpened = true;
 
                     currentFile = commandArgs[0];
                 }
             }
-            if(commandName.equals("close"))
-            {
+            if (commandName.equals("close")) {
                 fileOpened = false;
 
                 currentFile = null;
