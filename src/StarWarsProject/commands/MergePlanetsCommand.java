@@ -27,7 +27,7 @@ public class MergePlanetsCommand implements Command
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         /**
@@ -36,9 +36,9 @@ public class MergePlanetsCommand implements Command
 
         if(args.length < 2)
         {
-            System.out.println("Usage: <planet1> + <planet2>");
+            return "Usage: <planet1> + <planet2>";
 
-            return;
+
         }
 
 
@@ -49,9 +49,8 @@ public class MergePlanetsCommand implements Command
 
         if(firstPlanet == null || secondPlanet == null)
         {
-            System.out.println("Planet not found.");
+            return "Planet not found.";
 
-            return;
         }
 
 
@@ -71,11 +70,15 @@ public class MergePlanetsCommand implements Command
         */
         jedis.sort(Comparator.comparing(Jedi::getName));
 
-
+        StringBuilder builder = new StringBuilder();
 
         for(Jedi jedi : jedis)
         {
-            System.out.println(jedi);
+
+            builder.append(jedi.getName()).append(" ").append(jedi.getRank()).append(" ");
+            builder.append(jedi.getAge()).append(" ").append(jedi.getSaberColor()).append("\n");
+
         }
+        return builder.toString();
     }
 }

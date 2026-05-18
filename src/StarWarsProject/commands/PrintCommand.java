@@ -27,14 +27,13 @@ public class PrintCommand implements Command{
      */
 
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         if(args.length < 1)
         {
-            System.out.println("Usage: print <planet/jedi>");
+            return "Usage: print <planet/jedi>";
 
-            return;
         }
 
 
@@ -50,18 +49,20 @@ public class PrintCommand implements Command{
         /**
          * Ако е планета.
         */
+
         if(planet != null)
         {
+            StringBuilder builder = new StringBuilder();
 
-            System.out.println("Planet: " + planet.getName());
+            builder.append("Planet: ").append(planet.getName()).append("\n");
 
 
             for(Jedi jedi : jediService.getSortedJedis(planet))
             {
-                System.out.println(jedi);
+                builder.append(jedi.getName()).append(" ").append(jedi.getRank()).append(" ");
+                builder.append(jedi.getAge()).append(" ").append(jedi.getSaberColor()).append("\n");
             }
-
-            return;
+          return builder.toString();
         }
 
 
@@ -73,18 +74,17 @@ public class PrintCommand implements Command{
 
         if(jedi != null)
         {
+            StringBuilder builder = new StringBuilder();
 
             Planet jediPlanet = galaxy.findPlanetByJedi(name);
+            builder.append(jedi.getName()).append(" ").append(jedi.getRank()).append(" ");
+            builder.append(jedi.getAge()).append(" ").append(jedi.getSaberColor()).append("\n");
+            builder.append("Planet: ").append(jediPlanet.getName()).append("\n");
 
-
-            System.out.println(jedi);
-
-            System.out.println("Planet: " + jediPlanet.getName());
-
-            return;
+            return builder.toString();
         }
 
 
-        System.out.println("Planet or Jedi not found.");
+        return "Planet or Jedi not found.";
    }
 }

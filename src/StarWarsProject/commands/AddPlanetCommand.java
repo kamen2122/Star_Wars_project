@@ -23,7 +23,7 @@ public class AddPlanetCommand implements Command{
      */
 
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         /**
@@ -33,9 +33,9 @@ public class AddPlanetCommand implements Command{
 
         if(args.length < 1)
         {
-            System.out.println("Usage: add_planet <planet>");
 
-            return;
+
+            return "Usage: add_planet <planet>";
         }
 
 
@@ -44,11 +44,11 @@ public class AddPlanetCommand implements Command{
 
         if(added)
         {
-            System.out.println("Planet added successfully.");
+           return "Planet added successfully.";
         }
         else
         {
-            System.out.println("Planet already exists.");
+            return "Planet already exists.";
         }
     }
 }

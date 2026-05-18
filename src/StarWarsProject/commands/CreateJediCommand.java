@@ -28,16 +28,16 @@ public class CreateJediCommand
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
 
 
         if(args.length < 6)
         {
-            System.out.println("Usage: create_jedi <planet> <name> <rank> <age> <color> <strength>");
+            return"Usage: create_jedi <planet> <name> <rank> <age> <color> <strength>";
 
-            return;
+
         }
 
 
@@ -61,9 +61,9 @@ public class CreateJediCommand
         }
         catch(NumberFormatException e)
         {
-            System.out.println("Invalid age or strength.");
+            return"Invalid age or strength.";
 
-            return;
+
         }
 
 
@@ -73,9 +73,9 @@ public class CreateJediCommand
         Planet planet = galaxy.getPlanetByName(planetName);
         if(planet == null)
         {
-            System.out.println("Planet not found.");
+            return "Planet not found.";
 
-            return;
+
         }
 
 
@@ -85,11 +85,11 @@ public class CreateJediCommand
 
         if(added)
         {
-            System.out.println("Jedi created successfully.");
+            return"Jedi created successfully.";
         }
         else
         {
-            System.out.println("Could not create Jedi.");
+            return "Could not create Jedi.";
         }
     }
 }

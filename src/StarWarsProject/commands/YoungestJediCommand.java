@@ -26,14 +26,14 @@ public class YoungestJediCommand implements Command {
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
 
 
 
         if (args.length < 2) {
-            System.out.println("Usage: get_youngest_jedi <planet> <rank>");
+            return "Usage: get_youngest_jedi <planet> <rank>";
 
-            return;
+
         }
 
 
@@ -46,9 +46,9 @@ public class YoungestJediCommand implements Command {
 
 
         if (planet == null) {
-            System.out.println("Planet not found.");
+            return "Planet not found.";
 
-            return;
+
         }
 
 
@@ -57,9 +57,9 @@ public class YoungestJediCommand implements Command {
         try {
             rank =Rank.valueOf(rankString.toUpperCase());
         } catch (IllegalArgumentException e) {
-            System.out.println("Invalid rank.");
+            return"Invalid rank.";
 
-            return;
+
         }
 
 
@@ -67,12 +67,12 @@ public class YoungestJediCommand implements Command {
 
 
         if (youngest == null) {
-            System.out.println("No Jedi found.");
+            return "No Jedi found.";
 
-            return;
+
         }
 
 
-        System.out.println(youngest);
+        return youngest.toString();
     }
 }

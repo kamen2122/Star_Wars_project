@@ -21,7 +21,7 @@ public class CloseCommand implements Command
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         /*
@@ -30,6 +30,6 @@ public class CloseCommand implements Command
         */
         galaxy.getPlanets().clear();
 
-        System.out.println("Successfully closed file.");
+        return "Successfully closed file.";
     }
 }

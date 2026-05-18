@@ -9,6 +9,6 @@ public interface Command {
      *
      * @param args аргументи на командата
      */
-    void execute(String[] args);
+    String execute(String[] args);
 
 }

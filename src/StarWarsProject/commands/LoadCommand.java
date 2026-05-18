@@ -28,14 +28,14 @@ public class LoadCommand implements Command
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         if(args.length < 1)
         {
-            System.out.println("Usage: open <file>");
+            return "Usage: open <file>";
 
-            return;
+
         }
 
         String fileName = args[0];
@@ -57,5 +57,6 @@ public class LoadCommand implements Command
          * Добавяме новите планети.
         */
         galaxy.getPlanets().addAll(loadedGalaxy.getPlanets());
+        return  "Successfully loaded " + fileName;
     }
 }

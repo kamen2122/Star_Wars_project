@@ -26,15 +26,15 @@ public class PromoteJediCommand  implements Command
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
 
         if(args.length < 3)
         {
-            System.out.println("Usage: promote_jedi <planet> <jedi> <multiplier>");
+            return "Usage: promote_jedi <planet> <jedi> <multiplier>";
 
-            return;
+
         }
 
 
@@ -50,17 +50,16 @@ public class PromoteJediCommand  implements Command
         }
         catch(NumberFormatException e)
         {
-            System.out.println("Invalid multiplier.");
+            return "Invalid multiplier.";
 
-            return;
+
         }
 
         Planet planet = galaxy.getPlanetByName(planetName);
         if(planet == null)
         {
-            System.out.println("Planet not found.");
+            return "Planet not found.";
 
-            return;
         }
 
         boolean promoted = jediService.promoteJedi(planet, jediName, multiplier);
@@ -68,11 +67,11 @@ public class PromoteJediCommand  implements Command
 
         if(promoted)
         {
-            System.out.println("Jedi promoted successfully.");
+            return "Jedi promoted successfully.";
         }
         else
         {
-            System.out.println("Could not promote Jedi.");
+            return "Could not promote Jedi.";
         }
     }
 }

@@ -27,14 +27,14 @@ public class StrongestJediCommand implements Command
      */
 
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         if(args.length < 1)
         {
-            System.out.println("Usage: get_strongest_jedi <planet>");
+            return "Usage: get_strongest_jedi <planet>";
 
-            return;
+
         }
 
 
@@ -45,21 +45,21 @@ public class StrongestJediCommand implements Command
 
         if(planet == null)
         {
-            System.out.println("Planet not found.");
+            return "Planet not found.";
 
-            return;
+
         }
         Jedi strongest = jediService.getStrongestJedi(planet);
 
 
         if(strongest == null)
         {
-            System.out.println("No Jedi found.");
+            return "No Jedi found.";
 
-            return;
+
         }
 
 
-        System.out.println(strongest);
+       return strongest.toString();
     }
 }

@@ -27,14 +27,14 @@ public class DemoteJediCommand  implements Command
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         if(args.length < 3)
         {
-            System.out.println("Usage: demote_jedi <planet> <jedi> <multiplier>");
+            return"Usage: demote_jedi <planet> <jedi> <multiplier>";
 
-            return;
+
         }
 
 
@@ -49,18 +49,18 @@ public class DemoteJediCommand  implements Command
         }
         catch(NumberFormatException e)
         {
-            System.out.println("Invalid multiplier.");
+            return"Invalid multiplier.";
 
-            return;
+
         }
 
 
         Planet planet = galaxy.getPlanetByName(planetName);
         if(planet == null)
         {
-            System.out.println("Planet not found.");
+            return"Planet not found.";
 
-            return;
+
         }
 
 
@@ -69,11 +69,11 @@ public class DemoteJediCommand  implements Command
 
         if(demoted)
         {
-            System.out.println("Jedi demoted successfully.");
+           return "Jedi demoted successfully.";
         }
         else
         {
-            System.out.println("Could not demote Jedi.");
+            return "Could not demote Jedi.";
         }
     }
 }

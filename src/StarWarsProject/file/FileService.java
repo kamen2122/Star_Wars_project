@@ -17,7 +17,7 @@ public class FileService {
      * @param galaxy галактика за запис
      * @param fileName име на файла
      */
-    public void saveGalaxy(Galaxy galaxy, String fileName)
+    public String saveGalaxy(Galaxy galaxy, String fileName)
     {
         try
         {
@@ -60,11 +60,11 @@ public class FileService {
             writer.close();
 
 
-            System.out.println("Galaxy saved successfully.");
+            return "Galaxy saved successfully.";
         }
         catch(Exception e)
         {
-            System.out.println("Error while saving galaxy.");
+           return "Error while saving galaxy.";
         }
     }
     /**
@@ -165,11 +165,10 @@ public class FileService {
 
             reader.close();
 
-            System.out.println("Galaxy loaded successfully.");
         }
         catch (Exception e)
         {
-            System.out.println("Error loading galaxy.");
+           throw  new RuntimeException("Error while loading galaxy.");
         }
 
         return galaxy;

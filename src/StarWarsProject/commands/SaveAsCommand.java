@@ -26,15 +26,15 @@ public class SaveAsCommand implements Command
      */
 
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
 
         if(args.length < 1)
         {
-            System.out.println("Usage: save as <file>");
+            return "Usage: save as <file>";
 
-            return;
+
         }
 
 
@@ -44,6 +44,6 @@ public class SaveAsCommand implements Command
         fileService.saveGalaxy(galaxy, fileName);
 
 
-        System.out.println("Successfully saved as " + fileName);
+        return "Successfully saved as " + fileName;
     }
 }

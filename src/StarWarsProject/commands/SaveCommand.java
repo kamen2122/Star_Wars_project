@@ -31,21 +31,21 @@ public class SaveCommand implements Command {
      */
 
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
-        String currentFile =
-                state.getCurrentFile();
+        String currentFile = state.getCurrentFile();
 
 
         if(currentFile == null)
         {
-            System.out.println("No file opened.");
+            return "No file opened.";
 
-            return;
+
         }
 
 
-        fileService.saveGalaxy(galaxy, currentFile);
+        return fileService.saveGalaxy(galaxy, currentFile);
+
     }
 }

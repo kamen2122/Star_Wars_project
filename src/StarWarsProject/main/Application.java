@@ -160,10 +160,10 @@ public class Application {
             }
 
 
-        /*
-         Изпълняваме командата.
+        /**
+         * Изпълняваме командата.
         */
-            command.execute(commandArgs);
+            System.out.println(command.execute(commandArgs));
             /*
             Ако е open команда,
             вече имаме отворен файл.

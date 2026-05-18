@@ -27,7 +27,7 @@ public class MostUsedSaberColorCommand implements Command
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
         /**
@@ -36,9 +36,8 @@ public class MostUsedSaberColorCommand implements Command
 
         if(args.length < 1)
         {
-            System.out.println("Usage: get_most_used_saber_color <planet>");
+            return "Usage: get_most_used_saber_color <planet>";
 
-            return;
         }
 
 
@@ -50,9 +49,9 @@ public class MostUsedSaberColorCommand implements Command
 
         if(planet == null)
         {
-            System.out.println("Planet not found.");
+            return "Planet not found.";
 
-            return;
+
         }
 
 
@@ -61,12 +60,12 @@ public class MostUsedSaberColorCommand implements Command
 
         if(color == null)
         {
-            System.out.println("No Jedi found.");
+           return "No Jedi found.";
 
-            return;
+
         }
 
 
-        System.out.println("Most used saber color: " + color);
+        return "Most used saber color: " + color;
     }
 }

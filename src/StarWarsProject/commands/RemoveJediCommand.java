@@ -30,16 +30,16 @@ public class RemoveJediCommand implements Command
      * @param args аргументи на командата
      */
     @Override
-    public void execute(String[] args)
+    public String execute(String[] args)
     {
 
 
 
         if(args.length < 2)
         {
-            System.out.println("Usage: removeJedi <planet> <jedi>");
+            return "Usage: removeJedi <planet> <jedi>";
 
-            return;
+
         }
 
 
@@ -51,9 +51,9 @@ public class RemoveJediCommand implements Command
         Planet planet = galaxy.getPlanetByName(planetName);
         if(planet == null)
         {
-            System.out.println("Planet not found.");
+            return "Planet not found.";
 
-            return;
+
         }
 
 
@@ -62,11 +62,11 @@ public class RemoveJediCommand implements Command
 
         if(removed)
         {
-            System.out.println("Jedi removed successfully.");
+            return "Jedi removed successfully.";
         }
         else
         {
-            System.out.println("Could not remove Jedi.");
+            return "Could not remove Jedi.";
         }
     }
 }
